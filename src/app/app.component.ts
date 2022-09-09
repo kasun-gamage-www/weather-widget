@@ -9,7 +9,10 @@ import Geo from './@core/util/geo'
   providers: [WeatherService]
 })
 export class AppComponent {
+  /*UI State*/
   title = 'weather-widget'
+  tempratureUnit: '°C' | '°F' = '°C'
+  /*Data - static*/
   forecastDays = [...Array(5).keys()]
 
   constructor(private weather: WeatherService) {
@@ -21,4 +24,11 @@ export class AppComponent {
       console.log(position)
     })
   }
+
+  getCurrentLocationWeather() {
+    Geo.fetchUserLocation(position => {
+      console.log(position)
+    })
+  }
+
 }

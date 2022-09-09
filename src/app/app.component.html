@@ -1,21 +1,52 @@
 <div class="container-fluid">
   <div class="row">
-    <section class="col-md-4" style="background-color: black;">
-      view
-
+    <section id="primary-view" class="col-md-4">
+      <header style="height: 10vh; background-color: red;">
+        Search
+        <input type="text" />
+        <button (click)="getCurrentLocationWeather()">X</button>
+      </header>
+      <div
+        style="height: 40vh; background-color: blue; background-image: url('../assets/img/Clouds.png'); background-size: auto 100%; background-position: center;">
+        icon
+      </div>
+      <div style="height: 25vh; background-color: green;">
+        Temprature {{ '15' + tempratureUnit }}
+      </div>
+      <div style="height: 10vh; background-color: yellowgreen;">
+        condition
+      </div>
+      <div style="height: 7vh; background-color: purple;">
+        Date
+      </div>
+      <footer style="height: 7vh; background-color: lightgreen;">
+        Location
+      </footer>
     </section>
-    <section class="col-md-7" style="background-color: blue;">
-      <div id="unit-selector" style="background-color: purple;" class="row">
-        <div *ngFor="let day of forecastDays" class="col-md-2 forecast-chip">
+    <section class="col-md-7">
+      <div id="unit-selector" style="height: 52px;">
+        <button class="unit-button float-end">°C</button>
+        <button class="unit-button">°F</button>
+      </div>
+      <div id="forecast" style="background-color: aqua;" class="row">
+        <div *ngFor="let day of forecastDays" class="forecast-chip">
           <app-forecast-chip></app-forecast-chip>
         </div>
       </div>
-      <div id="forecast" style="background-color: aqua;">
-f
-      </div>
       <h2>Today's Highlights</h2>
-      <div id="today-highlights" style="background-color: green;">
-f
+      <div id="today-highlights" style="background-color: green;" class="row">
+        <div class="col-4 detail-box">
+          OK
+        </div>
+        <div class="col-4 detail-box">
+          Q
+        </div>
+        <div class="col-4 detail-box">
+          R
+        </div>
+        <div class="col-4 detail-box">
+          S
+        </div>
       </div>
     </section>
   </div>

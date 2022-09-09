@@ -1,7 +1,24 @@
 @import 'bootstrap/dist/css/bootstrap-grid.min.css';
 
-*{
+//Font identified with https://www.fontsquirrel.com/matcherator
+@font-face {
+    font-family: Raleway;
+    src: url(assets/fonts/Raleway-Regular.ttf) format("opentype");
+}
+
+body{
     padding: 0;
     margin: 0;
+    background-color : #0f0c1c;
+    color : #fff;
 }
+
+.container-fluid{
+    padding: 0;
+}
+
+.row {
+    margin: 0;
+}
+
 $grid-gutter-width: 2rem !default;
