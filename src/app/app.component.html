@@ -19,21 +19,22 @@
       <div style="height: 10vh; text-align: center; vertical-align: middle;">
         <span style="font-size: 24px;">{{ weatherData[0].WeatherText }}</span>
       </div>
-      <div style="height: 7vh; background-color: purple;">
-        Date
+      <div style="height: 7vh; text-align: center;">
+        Today&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;{{ selectedDate | date:'EEE, d MMM' }}
       </div>
       <footer style="height: 7vh; background-color: lightgreen;">
         Location
       </footer>
     </section>
-    <section class="col-md-7">
+    <section class="col-md-7" style="margin-left: 4%;">
       <div id="unit-selector" style="height: 52px;">
         <button class="unit-button float-end">°C</button>
         <button class="unit-button">°F</button>
       </div>
-      <div id="forecast" style="background-color: aqua;" class="row">
-        <div *ngFor="let day of forecastDays" class="forecast-chip">
-          <app-forecast-chip></app-forecast-chip>
+      <div id="forecast" style="display : flex; flex-wrap: wrap;
+      gap: 10px;" class="row">
+        <div *ngFor="let dayF of forecast" class="forecast-chip">
+          <app-forecast-chip [forecastSummary]="dayF"></app-forecast-chip>
         </div>
       </div>
       <h2>Today's Highlights</h2>

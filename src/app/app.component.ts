@@ -8,11 +8,11 @@ import IconMapping from './@core/util/icon-mapping'
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [MockWeatherService]
+  providers: [WeatherService, MockWeatherService]
 })
 export class AppComponent {
   /*UI State*/
-  title = 'weather-widget'
+  title = 'weather widget'
   tempratureUnit: '°C' | '°F' = '°C'
   //---
   selectedDate: Date = new Date()
@@ -21,13 +21,20 @@ export class AppComponent {
   /*Data - static*/
   weatherData: any | null = null
   forecastDays = [...Array(5).keys()]
-  conditionIcon : string | undefined
+  forecast: Array<object | any> | any = [...Array(5).keys()]
+  conditionIcon: string | undefined
 
-  constructor(private weather: MockWeatherService) {
-    weather.getCurrentCondition(null).subscribe(weatherData => {
+  constructor(private weather: WeatherService, private weatherMock: MockWeatherService) {
+    weatherMock.getCurrentCondition(null).subscribe(weatherData => {
       console.log(weatherData)
       this.weatherData = weatherData
       this.conditionIcon = IconMapping.getIconURIByCode(weatherData[0]['WeatherIcon'])
+    })
+
+    weatherMock.getForecast('').subscribe(forecast => {
+      this.forecast = forecast.DailyForecasts
+      console.log(this.forecast)
+      //   this.conditionIcon = IconMapping.getIconURIByCode(weatherData[0]['WeatherIcon'])
     })
 
     Geo.fetchUserLocation(position => {

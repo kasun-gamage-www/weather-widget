@@ -1,1 +1,7 @@
-<p>forecast-chip works!</p>
+{{ forecastSummary.Date | date:'EEE, d MMM' }}
+
+<img [src]="conditionIcon">
+
+{{ forecastSummary.Temperature.Minimum.Value }}
+
+{{ forecastSummary.Temperature.Maximum.Value }}
