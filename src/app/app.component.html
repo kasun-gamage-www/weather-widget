@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="weatherData">
   <div class="row">
     <section id="primary-view" class="col-md-4">
       <header style="height: 10vh; background-color: red;">
@@ -11,10 +11,11 @@
         icon
       </div>
       <div style="height: 25vh; background-color: green;">
-        Temprature {{ '15' + tempratureUnit }}
+        Temprature {{ weatherData[0].Temperature.Metric.Value + ' ' + tempratureUnit }}
       </div>
       <div style="height: 10vh; background-color: yellowgreen;">
         condition
+        {{ weatherData[0].WeatherText }}
       </div>
       <div style="height: 7vh; background-color: purple;">
         Date
@@ -34,18 +35,31 @@
         </div>
       </div>
       <h2>Today's Highlights</h2>
-      <div id="today-highlights" style="background-color: green;" class="row">
-        <div class="col-4 detail-box">
-          OK
+      <div id="today-highlights" style="background-color: green;">
+        <div class="row">
+          <div class="detail-box">
+            <h5>Wind Status</h5>
+            {{ weatherData[0].Wind.Speed.Imperial.Value }}
+            ..............
+            {{ weatherData[0].Wind.Direction }}
+            .........
+            {{ weatherData[0].Wind.English }}
+            ..............
+          </div>
+          <div class="detail-box">
+            <h5>Humidity</h5>
+            {{ weatherData[0].RelativeHumidity }}%
+          </div>
         </div>
-        <div class="col-4 detail-box">
-          Q
-        </div>
-        <div class="col-4 detail-box">
-          R
-        </div>
-        <div class="col-4 detail-box">
-          S
+        <div class="row">
+          <div class="detail-box">
+            <h5>Visibility</h5>
+            {{ weatherData[0].Visibility.Imperial.Value }}
+          </div>
+          <div class="detail-box">
+            <h5>Air Pressure</h5>
+            {{ weatherData[0].Pressure.Metric.Value }} mb
+          </div>
         </div>
       </div>
     </section>
