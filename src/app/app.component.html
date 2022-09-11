@@ -1,9 +1,9 @@
 <div class="container-fluid" *ngIf="weatherData">
   <div class="row">
-    <section id="primary-view" class="col-md-4">
+    <section id="primary-view">
       <header style="height: 10vh; background-color: red; padding: 0 40px;">
         <input type="text" placeholder="Search for Places" (change)="searchLocation($event.target)" />
-        <button (click)="getCurrentLocationWeather()">X</button>
+        <button class="float-end" (click)="getCurrentLocationWeather()">X</button>
       </header>
       <div *ngIf="searchMode; else mainView">
         <ul>
@@ -13,7 +13,8 @@
               location.Country.EnglishName }}</button>
           </li>
         </ul>
-        <p style="margin: 0 40px;" *ngIf="0 === locationQuery?.length">No locations matching your keyword has been found. Please try a
+        <p style="margin: 0 40px;" *ngIf="0 === locationQuery?.length">No locations matching your keyword has been
+          found. Please try a
           different keyword.</p>
       </div>
       <ng-template #mainView>
@@ -30,23 +31,22 @@
         <div style="height: 10vh; text-align: center; vertical-align: middle;">
           <span style="font-size: 24px;">{{ weatherData[0].WeatherText }}</span>
         </div>
-        <div style="height: 7vh; text-align: center;">
+        <div style="height: 7vh; text-align: center;" class="secondary-text">
           Today&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;{{ selectedDate | date:'EEE, d MMM' }}
         </div>
-        <footer style="height: 7vh; text-align: center;">
+        <footer style="height: 7vh; text-align: center;" class="secondary-text">
           {{ selectedLocation.EnglishName }}, {{ selectedLocation.Country.EnglishName }}
         </footer>
 
       </ng-template>
 
     </section>
-    <section class="col-md-7" style="margin-left: 4%;">
-      <div id="unit-selector" style="height: 52px;">
+    <section id="secondary-view">
+      <div id="unit-selector" style="height: 10vh;">
         <button class="unit-button float-end">°C</button>
         <button class="unit-button">°F</button>
       </div>
-      <div id="forecast" style="display : flex; flex-wrap: wrap;
-      gap: 10px;" class="row">
+      <div id="forecast" class="row">
         <div *ngFor="let dayF of forecast" class="forecast-chip">
           <app-forecast-chip [forecastSummary]="dayF"></app-forecast-chip>
         </div>
@@ -65,17 +65,36 @@
           </div>
           <div class="detail-box">
             <h5>Humidity</h5>
-            {{ weatherData[0].RelativeHumidity }}%
+            <span style="font-size: 48px;">{{ weatherData[0].RelativeHumidity }}</span>
+            <span style="font-size: 32px;">%</span>
+            <div id="humidity-scale">
+              <div class="scale">
+                <span>0</span>
+                <span>50</span>
+                <span>100</span>
+              </div>
+              <div class="bar">
+                <div style="width: 0%;"></div>
+                <div style="width: 0%;"></div>
+              </div>
+              <div>
+                <span>%</span>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row">
           <div class="detail-box">
             <h5>Visibility</h5>
-            {{ weatherData[0].Visibility.Imperial.Value }}
+            <span style="font-size: 48px;">
+              {{ weatherData[0].Visibility.Imperial.Value }}</span>
+              <span style="font-size: 32px;">&nbsp;miles</span>
           </div>
           <div class="detail-box">
             <h5>Air Pressure</h5>
-            {{ weatherData[0].Pressure.Metric.Value }} mb
+            <span style="font-size: 48px;">
+              {{ weatherData[0].Pressure.Metric.Value }}</span>
+            <span style="font-size: 32px;">&nbsp;mb</span>
           </div>
         </div>
       </div>

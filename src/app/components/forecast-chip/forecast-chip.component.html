@@ -1,7 +1,9 @@
-{{ forecastSummary.Date | date:'EEE, d MMM' }}
-
+<p>{{ forecastSummary.Date | date:'EEE, d MMM' }}</p>
 <img [src]="conditionIcon">
 
-{{ forecastSummary.Temperature.Minimum.Value }}
+<div style="display: flex;">
+    <p style="flex : 1">{{ forecastSummary.Temperature.Minimum.Value }}</p>
 
-{{ forecastSummary.Temperature.Maximum.Value }}
+    <p style="flex : 1" class="secondary-text">
+        {{ forecastSummary.Temperature.Maximum.Value }}</p>
+</div>

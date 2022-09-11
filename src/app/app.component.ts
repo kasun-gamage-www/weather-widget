@@ -9,7 +9,7 @@ import IconMapping from './@core/util/icon-mapping'
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [WeatherService, GeoLocationService]
+  providers: [MockWeatherService, GeoLocationService]
 })
 export class AppComponent {
   /*UI State*/
@@ -32,7 +32,7 @@ export class AppComponent {
 
   locationQuery: any
 
-  constructor(private weather: WeatherService, private geo: GeoLocationService) {
+  constructor(private weather: MockWeatherService, private geo: GeoLocationService) {
     Geo.fetchUserLocation(position => {
       console.log(position)
     })

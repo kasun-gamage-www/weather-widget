@@ -1,4 +1,5 @@
 @import 'bootstrap/dist/css/bootstrap-grid.min.css';
+@import './app/@theme/theme.scss';
 
 //Font identified with https://www.fontsquirrel.com/matcherator
 @font-face {
@@ -10,7 +11,7 @@ body{
     padding: 0;
     margin: 0;
     background-color : #0f0c1c;
-    color : #fff;
+    color : $primary-text-color;
 }
 
 .container-fluid{
@@ -19,6 +20,10 @@ body{
 
 .row {
     margin: 0;
+}
+
+.secondary-text{
+    color: $secondary-text-color;
 }
 
 $grid-gutter-width: 2rem !default;

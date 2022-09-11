@@ -1,24 +1,24 @@
-.forecast-chip {
-    flex : 1;
-    height: 150px;
-    background-color: #1d2139;
+@import '../app/@theme/theme.scss';
+
+* {
     //Font identified with https://www.fontsquirrel.com/matcherator
+    font-family: Raleway, sans-serif;
 }
 
-*{
-    font-family : Raleway, sans-serif;
-}
-
-#primary-view{
-    background-color: #1d2139;
+#primary-view {
+    background-color: $primary-bg-color;
     height: 100vh;
 }
 
-.contrasted-txt{
-    color : #000;
+#secondary-view {
+    padding: 0 5%;
 }
 
-.unit-button{
+.contrasted-txt {
+    color: #000;
+}
+
+.unit-button {
     width: 32px;
     height: 32px;
     padding: 0;
@@ -27,24 +27,70 @@
     float: right;
 }
 
-.detail-box{
+.detail-box {
     flex: 1;
-    background-color: #1d2139;
-    height: 20vh;//15
+    background-color: $primary-bg-color;
+    min-height: 20vh; //15
+    text-align: center;
 }
 
-div#today-highlights div.row{
+div#today-highlights > div.row {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     gap: 10px;
     margin-bottom: 10px;
 }
 
-section{
+section {
     padding: 0;
 }
 
-h3{
+h3 {
     font-size: 96px;
     font-weight: 500;
+}
+
+input {
+    background-color: $secondary-text-color;
+    color: $primary-text-color;
+    border: 0;
+    padding: 10px 20px;
+}
+
+#forecast {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10vh;
+}
+
+.forecast-chip {
+    flex: 1;
+    min-width: 150px;
+    background-color: $primary-bg-color;
+    text-align: center;
+    padding: 10px 5px;
+}
+
+.forecast-chip:last-child {
+    max-width: 48.5%;
+}
+
+@media only screen and (min-width: 992px) {
+    #primary-view {
+        width: 30%;
+    }
+
+    #secondary-view {
+        padding: 0;
+        width: 60%;
+        margin: 0 5%;
+    }
+    .detail-box {
+        flex: 1;
+    }
+    div#today-highlights div.row {
+        flex-direction: row;
+    }
 }
