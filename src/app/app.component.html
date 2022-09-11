@@ -1,30 +1,44 @@
 <div class="container-fluid" *ngIf="weatherData">
   <div class="row">
     <section id="primary-view" class="col-md-4">
-      <header style="height: 10vh; background-color: red;">
-        Search
-        <input type="text" />
+      <header style="height: 10vh; background-color: red; padding: 0 40px;">
+        <input type="text" placeholder="Search for Places" (change)="searchLocation($event.target)" />
         <button (click)="getCurrentLocationWeather()">X</button>
       </header>
-      <div style="height: 40vh; text-align: center;">
-        <div
-          style="position: relative; top: - 40vh; opacity: 0.1;background-image: url('../assets/img/Clouds.png'); background-size: auto 100%; background-position: center; height: 100%; width: 100%;">
+      <div *ngIf="searchMode; else mainView">
+        <ul>
+          <li *ngFor="let location of locationQuery; index as i">
+            <button (click)="selectLocation(i)">{{ location.EnglishName }}, {{ location.AdministrativeArea.EnglishName
+              }}, {{
+              location.Country.EnglishName }}</button>
+          </li>
+        </ul>
+        <p style="margin: 0 40px;" *ngIf="0 === locationQuery?.length">No locations matching your keyword has been found. Please try a
+          different keyword.</p>
+      </div>
+      <ng-template #mainView>
+        <div style="height: 40vh; text-align: center;">
+          <div
+            style="position: relative; top: - 40vh; opacity: 0.1;background-image: url('../assets/img/Clouds.png'); background-size: auto 100%; background-position: center; height: 100%; width: 100%;">
+          </div>
+          <img [src]="conditionIcon" style="height : 20vh; position: relative; top : -30vh;">
         </div>
-        <img [src]="conditionIcon" style="height : 20vh; position: relative; top : -30vh;">
-      </div>
-      <div style="height: 25vh; text-align: center; vertical-align: middle; line-height: 20vh">
-        <span style="font-size: 96px;">{{ weatherData[0].Temperature.Metric.Value }}</span>
-        <span style="font-size: 48px;">°C</span>
-      </div>
-      <div style="height: 10vh; text-align: center; vertical-align: middle;">
-        <span style="font-size: 24px;">{{ weatherData[0].WeatherText }}</span>
-      </div>
-      <div style="height: 7vh; text-align: center;">
-        Today&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;{{ selectedDate | date:'EEE, d MMM' }}
-      </div>
-      <footer style="height: 7vh; background-color: lightgreen;">
-        Location
-      </footer>
+        <div style="height: 25vh; text-align: center; vertical-align: middle; line-height: 20vh">
+          <span style="font-size: 96px;">{{ weatherData[0].Temperature.Metric.Value }}</span>
+          <span style="font-size: 48px;">°C</span>
+        </div>
+        <div style="height: 10vh; text-align: center; vertical-align: middle;">
+          <span style="font-size: 24px;">{{ weatherData[0].WeatherText }}</span>
+        </div>
+        <div style="height: 7vh; text-align: center;">
+          Today&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;{{ selectedDate | date:'EEE, d MMM' }}
+        </div>
+        <footer style="height: 7vh; text-align: center;">
+          {{ selectedLocation.EnglishName }}, {{ selectedLocation.Country.EnglishName }}
+        </footer>
+
+      </ng-template>
+
     </section>
     <section class="col-md-7" style="margin-left: 4%;">
       <div id="unit-selector" style="height: 52px;">
@@ -38,7 +52,7 @@
         </div>
       </div>
       <h2>Today's Highlights</h2>
-      <div id="today-highlights" style="background-color: green;">
+      <div id="today-highlights">
         <div class="row">
           <div class="detail-box">
             <h5>Wind Status</h5>

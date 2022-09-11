@@ -1,5 +1,5 @@
 export default class Geo {
-    static fetchUserLocation(callback: (position: object) => void) {
+    static fetchUserLocation(callback: (position: any) => void) {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position): any => {
                 if (position) {

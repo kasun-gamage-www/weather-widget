@@ -1,4 +1,5 @@
 import { Component } from '@angular/core'
+import { GeoLocationService } from './@core/services/geo-location.service'
 import { MockWeatherService } from './@core/services/mock/mock-weather.service'
 import WeatherService from './@core/services/weather.service'
 import Geo from './@core/util/geo'
@@ -8,15 +9,20 @@ import IconMapping from './@core/util/icon-mapping'
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [WeatherService, MockWeatherService]
+  providers: [WeatherService, GeoLocationService]
 })
 export class AppComponent {
   /*UI State*/
   title = 'weather widget'
   tempratureUnit: '°C' | '°F' = '°C'
+  searchMode: boolean = false
   //---
   selectedDate: Date = new Date()
-  selectedLocation: string = ''
+  selectedLocation: object | any = {
+    Key: '311399',
+    EnglishName: 'Colombo',
+    Country: { EnglishName: 'Sri Lanka' }
+  }
 
   /*Data - static*/
   weatherData: any | null = null
@@ -24,28 +30,62 @@ export class AppComponent {
   forecast: Array<object | any> | any = [...Array(5).keys()]
   conditionIcon: string | undefined
 
-  constructor(private weather: WeatherService, private weatherMock: MockWeatherService) {
-    weatherMock.getCurrentCondition(null).subscribe(weatherData => {
+  locationQuery: any
+
+  constructor(private weather: WeatherService, private geo: GeoLocationService) {
+    Geo.fetchUserLocation(position => {
+      console.log(position)
+    })
+    this.refreshAll()
+  }
+  
+  refreshAll(){
+    this.weather.getCurrentCondition(this.selectedLocation.Key).subscribe(weatherData => {
       console.log(weatherData)
       this.weatherData = weatherData
       this.conditionIcon = IconMapping.getIconURIByCode(weatherData[0]['WeatherIcon'])
     })
 
-    weatherMock.getForecast('').subscribe(forecast => {
+    this.weather.getForecast(this.selectedLocation.Key).subscribe(forecast => {
       this.forecast = forecast.DailyForecasts
       console.log(this.forecast)
-      //   this.conditionIcon = IconMapping.getIconURIByCode(weatherData[0]['WeatherIcon'])
     })
 
-    Geo.fetchUserLocation(position => {
-      console.log(position)
-    })
   }
 
   getCurrentLocationWeather() {
     Geo.fetchUserLocation(position => {
       console.log(position)
+
+      this.geo.getLocationByCoordinates(position['lat'], position['lng']).subscribe(locationDetails => {
+        this.selectedLocation = locationDetails
+        console.log(this.selectedLocation)
+      })
     })
+  }
+
+  searchLocation(target: any) {
+    if (target.value) {
+      this.searchMode = true
+      this.geo.getLocationsByFullName(target.value).subscribe((locationDetails: any) => {
+        console.log(locationDetails)
+        this.selectedLocation = locationDetails[0]
+        this.locationQuery = locationDetails
+      }, error => {
+        console.log(error)
+      })
+    } else {
+      //if the searchbox is cleared
+      this.searchMode = false
+      this.locationQuery = []
+    }
+  }
+
+  selectLocation(queryIndex: number) {
+    this.selectedLocation = this.locationQuery[queryIndex]
+    this.refreshAll()
+    this.locationQuery = []
+    this.searchMode = false
   }
 
 }

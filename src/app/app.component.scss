@@ -1,7 +1,7 @@
 .forecast-chip {
     flex : 1;
     height: 150px;
-    background-color: brown;
+    background-color: #1d2139;
     //Font identified with https://www.fontsquirrel.com/matcherator
 }
 
@@ -29,9 +29,15 @@
 
 .detail-box{
     flex: 1;
-    background-color: red;
-    margin: 5px;
+    background-color: #1d2139;
     height: 20vh;//15
+}
+
+div#today-highlights div.row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
 }
 
 section{
