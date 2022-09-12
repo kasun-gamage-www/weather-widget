@@ -15,16 +15,14 @@
               location.Country.EnglishName }}</button>
           </li>
         </ul>
-        <p style="margin: 0 40px;" *ngIf="0 === locationQuery?.length">No locations matching your keyword has been
+        <p id="not-found-msg" *ngIf="0 === locationQuery?.length">No locations matching your keyword has been
           found. Please try a
           different keyword.</p>
       </div>
       <ng-template #mainView>
         <div style="height: 40vh; text-align: center;">
-          <div
-            style="position: relative; top: - 40vh; opacity: 0.1;background-image: url('../assets/img/Clouds.png'); background-size: auto 100%; background-position: center; height: 100%; width: 100%;">
-          </div>
-          <img [src]="conditionIcon" style="height : 20vh; position: relative; top : -30vh;">
+          <div id="clouds-background"></div>
+          <img id="current-condition-icon" [src]="conditionIcon">
         </div>
         <div style="height: 25vh; text-align: center; vertical-align: middle; line-height: 20vh">
           <span style="font-size: 96px;">{{ weatherData[0].Temperature[unitType].Value }}</span>
@@ -37,7 +35,8 @@
           Today&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;{{ selectedDate | date:'EEE, d MMM' }}
         </div>
         <footer style="height: 7vh; text-align: center;" class="secondary-text">
-          <mat-icon fontIcon="place" aria-hidden="true" class="inline-icon"></mat-icon>{{ selectedLocation.EnglishName }}, {{
+          <mat-icon fontIcon="place" aria-hidden="true" class="inline-icon"></mat-icon>{{ selectedLocation.EnglishName
+          }}, {{
           selectedLocation.Country.EnglishName }}
         </footer>
       </ng-template>
@@ -50,7 +49,7 @@
         <button class="unit-button" (click)="setMeasurementSys('Imperial')"
           [ngClass]="{ 'selected-measurement' : 'Imperial' === unitType }">°F</button>
       </div>
-      <div id="forecast" class="row">
+      <div id="forecast" class="row"> 
         <div *ngFor="let dayF of forecast; first as isTomo" class="forecast-chip">
           <app-forecast-chip [forecastSummary]="dayF" [measurementSystem]="unitType" [isTomorrow]="isTomo">
           </app-forecast-chip>
@@ -68,15 +67,16 @@
               {{ weatherData[0].Wind.Speed[unitType].Unit }}
             </span>
             <div id="wind-direction">
-              <mat-icon aria-label="wind-direction" fontIcon="navigation" class="inline-icon" [style.transform]="'rotate(' + weatherData[0].Wind.Direction.Degrees + 'deg)'"></mat-icon>
+              <mat-icon aria-label="wind-direction" fontIcon="navigation" class="inline-icon"
+                [style.transform]="'rotate(' + weatherData[0].Wind.Direction.Degrees + 'deg)'"></mat-icon>
               <span class="cdk-visually-hidden">{{ weatherData[0].Wind.Direction.Degrees }}</span>
-              {{ weatherData[0].Wind.Direction.English }}
+              <span class="secondary-text">{{ weatherData[0].Wind.Direction.English }}</span>
             </div>
           </div>
           <div class="detail-box">
             <h5>Humidity</h5>
-            <span style="font-size: 48px;">{{ weatherData[0].RelativeHumidity }}</span>
-            <span style="font-size: 32px;">%</span>
+            <span class="value-disply">{{ weatherData[0].RelativeHumidity }}</span>
+            <span class="unit-disply">%</span>
             <div id="humidity-scale">
               <div class="scale">
                 <span>0</span>
@@ -96,15 +96,15 @@
         <div class="row">
           <div class="detail-box">
             <h5>Visibility</h5>
-            <span style="font-size: 48px;">
+            <span class="value-display">
               {{ weatherData[0].Visibility[unitType].Value }}</span>
-            <span style="font-size: 32px;">&nbsp;{{ weatherData[0].Visibility[unitType].Unit }}</span>
+            <span class="unit-display">&nbsp;{{ weatherData[0].Visibility[unitType].Unit }}</span>
           </div>
           <div class="detail-box">
             <h5>Air Pressure</h5>
-            <span style="font-size: 48px;">
+            <span class="value-display">
               {{ weatherData[0].Pressure[unitType].Value | number:'1.0-1' }}</span>
-            <span style="font-size: 32px;">&nbsp;{{ weatherData[0].Pressure[unitType].Unit }}</span>
+            <span class="unit-display">&nbsp;{{ weatherData[0].Pressure[unitType].Unit }}</span>
           </div>
         </div>
       </div>

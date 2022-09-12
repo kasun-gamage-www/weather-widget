@@ -1,5 +1,6 @@
 import { Component } from '@angular/core'
 import { GeoLocationService } from './@core/services/geo-location.service'
+import { MockWeatherService } from './@core/services/mock/mock-weather.service'
 import WeatherService from './@core/services/weather.service'
 import Geo from './@core/util/geo'
 import IconMapping from './@core/util/icon-mapping'
@@ -8,7 +9,7 @@ import IconMapping from './@core/util/icon-mapping'
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [WeatherService, GeoLocationService]
+  providers: [WeatherService, MockWeatherService, GeoLocationService]
 })
 export class AppComponent {
   /*UI State*/
@@ -18,33 +19,34 @@ export class AppComponent {
   //---
   selectedDate: Date = new Date()
   selectedLocation: object | any = {
-    Key: '311399',
-    EnglishName: 'Colombo',
-    Country: { EnglishName: 'Sri Lanka' }
+    Key: '347625',
+    EnglishName: 'Los Angeles',
+    Country: { EnglishName: 'United States' }
   }
 
   /*Data - static*/
   weatherData: any | null = null
-  //forecastDays = [...Array(5).keys()]
-  forecast: Array<object | any> | any = [...Array(5).keys()]
+  forecast: Array<object | any> | any = []
   conditionIcon: string | undefined
 
   locationQuery: any
 
-  constructor(private weather: WeatherService, private geo: GeoLocationService) {
+  constructor(private weather: WeatherService, private weatherM: MockWeatherService, private geo: GeoLocationService) {
     this.refreshAll()
   }
-  
-  refreshAll(){
+
+  refreshAll() {
     this.weather.getCurrentCondition(this.selectedLocation.Key).subscribe(weatherData => {
-      console.log(weatherData)
       this.weatherData = weatherData
       this.conditionIcon = IconMapping.getIconURIByCode(weatherData[0]['WeatherIcon'])
     })
 
-    this.weather.getForecast(this.selectedLocation.Key).subscribe(forecast => {
-      this.forecast = forecast.DailyForecasts
+    this.weather.getForecast(this.selectedLocation?.Key || '347625').subscribe(forecast => {
+      this.forecast = forecast.DailyForecasts;
+      console.log(forecast)
     })
+
+    //this.weatherM.getForecast(this.selectedLocation.Key).subscribe(forecast => { this.forecast = forecast.DailyForecasts; console.log(forecast) })
 
   }
 
@@ -52,7 +54,6 @@ export class AppComponent {
     Geo.fetchUserLocation(position => {
       this.geo.getLocationByCoordinates(position['lat'], position['lng']).subscribe(locationDetails => {
         this.selectedLocation = locationDetails
-        console.log(this.selectedLocation)
       })
     })
   }
@@ -61,11 +62,10 @@ export class AppComponent {
     if (target.value) {
       this.searchMode = true
       this.geo.getLocationsByFullName(target.value).subscribe((locationDetails: any) => {
-        console.log(locationDetails)
+
         this.selectedLocation = locationDetails[0]
         this.locationQuery = locationDetails
       }, error => {
-        console.log(error)
       })
     } else {
       //if the searchbox is cleared
@@ -81,7 +81,7 @@ export class AppComponent {
     this.searchMode = false
   }
 
-  setMeasurementSys(selectedSys : 'Imperial' | 'Metric'){
+  setMeasurementSys(selectedSys: 'Imperial' | 'Metric') {
     this.unitType = selectedSys
   }
 

@@ -19,10 +19,13 @@
 }
 
 header {
-    display: flex;
-    align-items: center;
     height: 10vh;
     padding: 0 40px;
+}
+
+header>input,
+header>button {
+    margin-top: 5vh;
 }
 
 .unit-button {
@@ -35,7 +38,7 @@ header {
     opacity: 0.5;
 }
 
-.unit-button.selected-measurement{
+.unit-button.selected-measurement {
     background-color: aliceblue;
     font-weight: bold;
     opacity: 1;
@@ -48,11 +51,11 @@ header {
     text-align: center;
 }
 
-.value-display{
+.value-display {
     font-size: 48px;
 }
 
-.unit-display{
+.unit-display {
     font-size: 32px;
 }
 
@@ -68,8 +71,9 @@ section {
     padding: 0;
 }
 
-#user-location{
-    border-radius : 100px;
+#user-location {
+    border-radius: 100px;
+    float: right;
 }
 
 h3 {
@@ -82,6 +86,22 @@ input {
     color: $primary-text-color;
     border: 0;
     padding: 10px 20px;
+}
+
+#clouds-background {
+    position: relative;
+    opacity: 0.1;
+    background-image: url('../assets/img/Clouds.png');
+    background-size: auto 100%;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+}
+
+#current-condition-icon {
+    height: 20vh;
+    position: relative;
+    top: -30vh;
 }
 
 #forecast {
@@ -108,14 +128,14 @@ ul {
     list-style-type: none;
 }
 
-#wind-direction{
+#wind-direction {
     margin: 30px 0;
 }
 
-mat-icon[fontIcon="navigation"]{
+mat-icon[fontIcon="navigation"] {
     background-color: $secondary-text-color;
     border-radius: 500px;
-    padding : 1px;
+    padding: 1px;
     color: $primary-bg-color;
 }
 
@@ -159,6 +179,18 @@ mat-icon[fontIcon="navigation"]{
     text-align: center;
     font-size: 12px;
     line-height: 1;
+}
+
+#not-found-msg {
+    margin: 0 40px;
+}
+
+.cdk-visually-hidden {
+    display: none;
+}
+
+.secondary-text {
+    color: $secondary-text-color;
 }
 
 @media only screen and (min-width: 992px) {

@@ -10,7 +10,7 @@ export class GeoLocationService {
 
   /*API URI should ideally be obtained through provider object*/
   getLocationByCoordinates(lat: number = 0, lng: number = 0) {
-    return this.http.get(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${environment.API_KEY}&q=6.7721%2C79.8777`, {
+    return this.http.get(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${environment.API_KEY}&q=${lat},${lng}`, {
       //   params: new HttpParams().appendAll({q: `${lat},${lng}`})
     }).pipe(retry(3))
   }
