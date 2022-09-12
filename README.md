@@ -32,6 +32,7 @@ Codebase
 * API Key should be removed from the codebase and be obtained dynamically either via a proxy or be configured alongside the CI/CD pipeline.
 * All icons to be locally stored as assets.
 * Move all inline styles to the relevant stylesheets.
+* Add unit tests
 
 Features
 * Currently the user can view the weather conditions for the current day and for 5 days into the future. This is a limiation set by the free plan of the API provider. This can be expanded to enable users to view weather conditions of past days and for more than 5 days into the future.

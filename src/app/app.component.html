@@ -3,7 +3,9 @@
     <section id="primary-view">
       <header>
         <input type="text" placeholder="Search for Places" (change)="searchLocation($event.target)" />
-        <button class="float-end" (click)="getCurrentLocationWeather()">X</button>
+        <button id="user-location" class="float-end" (click)="getCurrentLocationWeather()">
+          <mat-icon aria-label="get-location" fontIcon="gps_fixed"></mat-icon>
+        </button>
       </header>
       <div *ngIf="searchMode; else mainView">
         <ul>
@@ -35,7 +37,7 @@
           Today&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;{{ selectedDate | date:'EEE, d MMM' }}
         </div>
         <footer style="height: 7vh; text-align: center;" class="secondary-text">
-          {{ selectedLocation.EnglishName }}, {{ selectedLocation.Country.EnglishName }}
+          <mat-icon fontIcon="place" aria-hidden="true"></mat-icon>{{ selectedLocation.EnglishName }}, {{ selectedLocation.Country.EnglishName }}
         </footer>
 
       </ng-template>

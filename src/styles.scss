@@ -1,10 +1,15 @@
 @import 'bootstrap/dist/css/bootstrap-grid.min.css';
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
 @import './app/@theme/theme.scss';
 
 //Font identified with https://www.fontsquirrel.com/matcherator
 @font-face {
     font-family: Raleway;
     src: url(assets/fonts/Raleway-Regular.ttf) format("opentype");
+}
+
+.material-icons{
+    font-family: 'Material Icons' !important;
 }
 
 body{
