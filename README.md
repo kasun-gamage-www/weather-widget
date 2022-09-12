@@ -1,27 +1,34 @@
-# WeatherWidget
+# Weather Widget by Anupama
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.1.
+This is a simple web application made with Angular that display the weather condtion and forecasts at any location on earth.
 
-## Development server
+Data is obtained via the AccuWeather API
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Users can choose between Metric and Imperial measurement systems to display the data. (Once a measurement system is selected all units will change to that system)
 
-## Code scaffolding
+# Project Setup
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Clone this repo
 
-## Build
+2. Make sure Node.js(v18+), NPM and AngularCLI are installed locally on your machine
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+3. Navigate to the root directory of the repo
 
-## Running unit tests
+4. Use `npm install` (or a different package manager such as yarn) to install the dependencies.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+5. Isse the `npm start` command or "ng serve"
 
-## Running end-to-end tests
+6. Navigate to `localhost:4200` on a browser of your preference.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+# Limitations and future enhacements
 
-## Further help
+Codebase
+* The Application is strongly coupled with the accuweather API, this should ideally be abstracted out with the adapter pattern (combined with adapter or adapter factory to be able to dynamically change the API provider).
+* Error handling is limited and should be improved
+* API Key should be removed from the codebase and be obtained dynamically either via a proxy or be configured alongside the CI/CD pipeline
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Features
+* Currently the user can view the weather conditions for the current day and for 5 days into the future. This is a limiation set by the free plan of the API provider. This can be expanded to enable users to view weather conditions of past days and for more than 5 days into the future.
+* Currently the data is obtained solely via AccuWeather API. User can be given the option to dynamically pick the provider.
+* Users could be given the ability to pick the preffered unit system for each indicator separately.
+

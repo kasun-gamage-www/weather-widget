@@ -14,7 +14,7 @@ import IconMapping from './@core/util/icon-mapping'
 export class AppComponent {
   /*UI State*/
   title = 'weather widget'
-  tempratureUnit: '°C' | '°F' = '°C'
+  unitType: 'Imperial' | 'Metric' = 'Metric'
   searchMode: boolean = false
   //---
   selectedDate: Date = new Date()
@@ -26,7 +26,7 @@ export class AppComponent {
 
   /*Data - static*/
   weatherData: any | null = null
-  forecastDays = [...Array(5).keys()]
+  //forecastDays = [...Array(5).keys()]
   forecast: Array<object | any> | any = [...Array(5).keys()]
   conditionIcon: string | undefined
 
