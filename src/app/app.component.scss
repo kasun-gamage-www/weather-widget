@@ -18,6 +18,13 @@
     color: #000;
 }
 
+header {
+    display: flex;
+    align-items: center;
+    height: 10vh;
+    padding: 0 40px;
+}
+
 .unit-button {
     width: 32px;
     height: 32px;
@@ -79,6 +86,38 @@ input {
 
 ul {
     list-style-type: none;
+}
+
+#humidity-scale {
+    margin: 1rem 0;
+    color: $secondary-text-color;
+}
+
+#humidity-scale>.scale {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+#humidity-scale>.bar>.full-bar {
+    width: 80%;
+    height: 5px;
+    background-color: $secondary-text-color;
+    margin: 3px auto;
+    border-radius: 50px;
+}
+
+#humidity-scale>.bar>.value-bar {
+    height: 5px;
+    background-color: #ffed64;
+    margin: 3px 0 3px 10%;
+    margin-top: -8px;
+    position: relative;
+    border-radius: 50px;
 }
 
 @media only screen and (min-width: 992px) {

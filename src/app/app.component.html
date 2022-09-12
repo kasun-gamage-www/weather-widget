@@ -1,7 +1,7 @@
 <div class="container-fluid" *ngIf="weatherData">
   <div class="row">
     <section id="primary-view">
-      <header style="height: 10vh; background-color: red; padding: 0 40px;">
+      <header>
         <input type="text" placeholder="Search for Places" (change)="searchLocation($event.target)" />
         <button class="float-end" (click)="getCurrentLocationWeather()">X</button>
       </header>
@@ -74,10 +74,10 @@
                 <span>100</span>
               </div>
               <div class="bar">
-                <div style="width: 0%;"></div>
-                <div style="width: 0%;"></div>
+                <div class="full-bar"></div>
+                <div class="value-bar" [ngStyle]="{width: weatherData[0].RelativeHumidity * 0.8 + '%'}"></div>
               </div>
-              <div>
+              <div style="text-align: right; margin-right: 10%;">
                 <span>%</span>
               </div>
             </div>
