@@ -3,7 +3,7 @@
     <section id="primary-view">
       <header>
         <input type="text" placeholder="Search for Places" (change)="searchLocation($event.target)" />
-        <button id="user-location" class="float-end" (click)="getCurrentLocationWeather()">
+        <button id="user-location" class="btn-circle" (click)="getCurrentLocationWeather()">
           <mat-icon aria-label="get-location" fontIcon="gps_fixed"></mat-icon>
         </button>
       </header>
@@ -37,16 +37,18 @@
           Today&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;{{ selectedDate | date:'EEE, d MMM' }}
         </div>
         <footer style="height: 7vh; text-align: center;" class="secondary-text">
-          <mat-icon fontIcon="place" aria-hidden="true"></mat-icon>{{ selectedLocation.EnglishName }}, {{ selectedLocation.Country.EnglishName }}
+          <mat-icon fontIcon="place" aria-hidden="true" class="inline-icon"></mat-icon>{{ selectedLocation.EnglishName }}, {{
+          selectedLocation.Country.EnglishName }}
         </footer>
-
       </ng-template>
 
     </section>
     <section id="secondary-view">
       <div id="unit-selector" style="height: 10vh;">
-        <button class="unit-button float-end" (click)="setMeasurementSys('Metric')">°C</button>
-        <button class="unit-button" (click)="setMeasurementSys('Imperial')">°F</button>
+        <button class="unit-button float-end" (click)="setMeasurementSys('Metric')"
+          [ngClass]="{ 'selected-measurement' : 'Metric' === unitType }">°C</button>
+        <button class="unit-button" (click)="setMeasurementSys('Imperial')"
+          [ngClass]="{ 'selected-measurement' : 'Imperial' === unitType }">°F</button>
       </div>
       <div id="forecast" class="row">
         <div *ngFor="let dayF of forecast; first as isTomo" class="forecast-chip">
@@ -59,12 +61,17 @@
         <div class="row">
           <div class="detail-box">
             <h5>Wind Status</h5>
-            {{ weatherData[0].Wind.Speed[unitType].Value }}
-            ..............
-            {{ weatherData[0].Wind.Direction.Degrees }}
-            .........
-            {{ weatherData[0].Wind.English }}
-            ..............
+            <span class="value-display">
+              {{ weatherData[0].Wind.Speed[unitType].Value }}
+            </span>
+            <span class="unit-display">
+              {{ weatherData[0].Wind.Speed[unitType].Unit }}
+            </span>
+            <div id="wind-direction">
+              <mat-icon aria-label="wind-direction" fontIcon="navigation" class="inline-icon" [style.transform]="'rotate(' + weatherData[0].Wind.Direction.Degrees + 'deg)'"></mat-icon>
+              <span class="cdk-visually-hidden">{{ weatherData[0].Wind.Direction.Degrees }}</span>
+              {{ weatherData[0].Wind.Direction.English }}
+            </div>
           </div>
           <div class="detail-box">
             <h5>Humidity</h5>
@@ -96,7 +103,7 @@
           <div class="detail-box">
             <h5>Air Pressure</h5>
             <span style="font-size: 48px;">
-              {{ weatherData[0].Pressure[unitType].Value }}</span>
+              {{ weatherData[0].Pressure[unitType].Value | number:'1.0-1' }}</span>
             <span style="font-size: 32px;">&nbsp;{{ weatherData[0].Pressure[unitType].Unit }}</span>
           </div>
         </div>

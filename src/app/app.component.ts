@@ -1,6 +1,5 @@
 import { Component } from '@angular/core'
 import { GeoLocationService } from './@core/services/geo-location.service'
-import { MockWeatherService } from './@core/services/mock/mock-weather.service'
 import WeatherService from './@core/services/weather.service'
 import Geo from './@core/util/geo'
 import IconMapping from './@core/util/icon-mapping'
@@ -9,7 +8,7 @@ import IconMapping from './@core/util/icon-mapping'
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [MockWeatherService, GeoLocationService]
+  providers: [WeatherService, GeoLocationService]
 })
 export class AppComponent {
   /*UI State*/
@@ -32,7 +31,7 @@ export class AppComponent {
 
   locationQuery: any
 
-  constructor(private weather: MockWeatherService, private geo: GeoLocationService) {
+  constructor(private weather: WeatherService, private geo: GeoLocationService) {
     this.refreshAll()
   }
   

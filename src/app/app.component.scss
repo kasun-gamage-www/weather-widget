@@ -32,6 +32,13 @@ header {
     border-radius: 32px;
     margin: 10px;
     float: right;
+    opacity: 0.5;
+}
+
+.unit-button.selected-measurement{
+    background-color: aliceblue;
+    font-weight: bold;
+    opacity: 1;
 }
 
 .detail-box {
@@ -39,6 +46,14 @@ header {
     background-color: $primary-bg-color;
     min-height: 20vh; //15
     text-align: center;
+}
+
+.value-display{
+    font-size: 48px;
+}
+
+.unit-display{
+    font-size: 32px;
 }
 
 div#today-highlights>div.row {
@@ -93,6 +108,17 @@ ul {
     list-style-type: none;
 }
 
+#wind-direction{
+    margin: 30px 0;
+}
+
+mat-icon[fontIcon="navigation"]{
+    background-color: $secondary-text-color;
+    border-radius: 500px;
+    padding : 1px;
+    color: $primary-bg-color;
+}
+
 #humidity-scale {
     margin: 1rem 0;
     color: $secondary-text-color;
@@ -123,6 +149,16 @@ ul {
     margin-top: -8px;
     position: relative;
     border-radius: 50px;
+}
+
+.btn-circle {
+    width: 40px;
+    height: 40px;
+    padding: 0px;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1;
 }
 
 @media only screen and (min-width: 992px) {
