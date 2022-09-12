@@ -81,7 +81,8 @@ input {
 }
 
 .forecast-chip:last-child {
-    max-width: 48.5%;
+    //to be improved for horizontal view and tabs
+    max-width: calc(50% - 5px);
 }
 
 ul {

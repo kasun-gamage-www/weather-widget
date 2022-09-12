@@ -25,8 +25,8 @@
           <img [src]="conditionIcon" style="height : 20vh; position: relative; top : -30vh;">
         </div>
         <div style="height: 25vh; text-align: center; vertical-align: middle; line-height: 20vh">
-          <span style="font-size: 96px;">{{ weatherData[0].Temperature.Metric.Value }}</span>
-          <span style="font-size: 48px;">°C</span>
+          <span style="font-size: 96px;">{{ weatherData[0].Temperature[unitType].Value }}</span>
+          <span style="font-size: 48px;">°{{ weatherData[0].Temperature[unitType].Unit }}</span>
         </div>
         <div style="height: 10vh; text-align: center; vertical-align: middle;">
           <span style="font-size: 24px;">{{ weatherData[0].WeatherText }}</span>
@@ -43,12 +43,13 @@
     </section>
     <section id="secondary-view">
       <div id="unit-selector" style="height: 10vh;">
-        <button class="unit-button float-end">°C</button>
-        <button class="unit-button">°F</button>
+        <button class="unit-button float-end" (click)="setMeasurementSys('Metric')">°C</button>
+        <button class="unit-button" (click)="setMeasurementSys('Imperial')">°F</button>
       </div>
       <div id="forecast" class="row">
-        <div *ngFor="let dayF of forecast" class="forecast-chip">
-          <app-forecast-chip [forecastSummary]="dayF"></app-forecast-chip>
+        <div *ngFor="let dayF of forecast; first as isTomo" class="forecast-chip">
+          <app-forecast-chip [forecastSummary]="dayF" [measurementSystem]="unitType" [isTomorrow]="isTomo">
+          </app-forecast-chip>
         </div>
       </div>
       <h2>Today's Highlights</h2>
@@ -56,7 +57,7 @@
         <div class="row">
           <div class="detail-box">
             <h5>Wind Status</h5>
-            {{ weatherData[0].Wind.Speed.Imperial.Value }}
+            {{ weatherData[0].Wind.Speed[unitType].Value }}
             ..............
             {{ weatherData[0].Wind.Direction.Degrees }}
             .........
@@ -75,7 +76,7 @@
               </div>
               <div class="bar">
                 <div class="full-bar"></div>
-                <div class="value-bar" [ngStyle]="{width: weatherData[0].RelativeHumidity * 0.8 + '%'}"></div>
+                <div class="value-bar" [ngStyle]="{ 'width.%' : weatherData[0].RelativeHumidity * 0.8 }"></div>
               </div>
               <div style="text-align: right; margin-right: 10%;">
                 <span>%</span>
@@ -87,14 +88,14 @@
           <div class="detail-box">
             <h5>Visibility</h5>
             <span style="font-size: 48px;">
-              {{ weatherData[0].Visibility.Imperial.Value }}</span>
-              <span style="font-size: 32px;">&nbsp;miles</span>
+              {{ weatherData[0].Visibility[unitType].Value }}</span>
+            <span style="font-size: 32px;">&nbsp;{{ weatherData[0].Visibility[unitType].Unit }}</span>
           </div>
           <div class="detail-box">
             <h5>Air Pressure</h5>
             <span style="font-size: 48px;">
-              {{ weatherData[0].Pressure.Metric.Value }}</span>
-            <span style="font-size: 32px;">&nbsp;mb</span>
+              {{ weatherData[0].Pressure[unitType].Value }}</span>
+            <span style="font-size: 32px;">&nbsp;{{ weatherData[0].Pressure[unitType].Unit }}</span>
           </div>
         </div>
       </div>

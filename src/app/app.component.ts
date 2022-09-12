@@ -33,9 +33,6 @@ export class AppComponent {
   locationQuery: any
 
   constructor(private weather: MockWeatherService, private geo: GeoLocationService) {
-    Geo.fetchUserLocation(position => {
-      console.log(position)
-    })
     this.refreshAll()
   }
   
@@ -48,15 +45,12 @@ export class AppComponent {
 
     this.weather.getForecast(this.selectedLocation.Key).subscribe(forecast => {
       this.forecast = forecast.DailyForecasts
-      console.log(this.forecast)
     })
 
   }
 
   getCurrentLocationWeather() {
     Geo.fetchUserLocation(position => {
-      console.log(position)
-
       this.geo.getLocationByCoordinates(position['lat'], position['lng']).subscribe(locationDetails => {
         this.selectedLocation = locationDetails
         console.log(this.selectedLocation)
@@ -86,6 +80,10 @@ export class AppComponent {
     this.refreshAll()
     this.locationQuery = []
     this.searchMode = false
+  }
+
+  setMeasurementSys(selectedSys : 'Imperial' | 'Metric'){
+    this.unitType = selectedSys
   }
 
 }
