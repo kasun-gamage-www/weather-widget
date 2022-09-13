@@ -227,6 +227,11 @@ button.location-select {
     font-size: 24px;
 }
 
+/*
+#forecast[min-width~="400px"] .forecast-chip{
+    max-width: 30%;
+}*/
+
 @media only screen and (min-width: 992px) {
     #primary-view {
         width: 30%;
