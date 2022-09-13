@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
+import { WeatherData } from './@core/models/weather-data'
 import { GeoLocationService } from './@core/services/geo-location.service'
-import { MockWeatherService } from './@core/services/mock/mock-weather.service'
 import WeatherService from './@core/services/weather.service'
 import Geo from './@core/util/geo'
 import IconMapping from './@core/util/icon-mapping'
@@ -9,7 +9,7 @@ import IconMapping from './@core/util/icon-mapping'
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [WeatherService, MockWeatherService, GeoLocationService]
+  providers: [WeatherService, GeoLocationService]
 })
 export class AppComponent {
   /*UI State*/
@@ -35,19 +35,18 @@ export class AppComponent {
   null | empty array : queried but no results*/
   locationQuery: any
 
-  constructor(private weather: WeatherService, private weatherM: MockWeatherService, private geo: GeoLocationService) {
+  constructor(private weather: WeatherService, private geo: GeoLocationService) {
     this.refreshAll()
   }
 
   refreshAll() {
-    this.weather.getCurrentCondition(this.selectedLocation.Key).subscribe(weatherData => {
+    this.weather.getCurrentCondition(this.selectedLocation.Key).subscribe((weatherData: WeatherData) => {
       this.weatherData = weatherData
-      this.conditionIcon = IconMapping.getIconURIByCode(weatherData[0]['WeatherIcon'])
+      this.conditionIcon = IconMapping.getIconURIByCode(weatherData.WeatherIcon)
     })
 
     this.weather.getForecast(this.selectedLocation?.Key || '347625').subscribe(forecast => {
-      this.forecast = forecast.DailyForecasts;
-      console.log(forecast)
+      this.forecast = forecast.DailyForecasts
     })
 
     //this.weatherM.getForecast(this.selectedLocation.Key).subscribe(forecast => { this.forecast = forecast.DailyForecasts; console.log(forecast) })
@@ -88,7 +87,10 @@ export class AppComponent {
   switchMode(input: any) {
     console.log(input.value)
     if (input?.value) this.searchMode = true
-    else this.searchMode = false
+    else {
+      this.searchMode = false
+      this.locationQuery = []
+    }
   }
 
 }

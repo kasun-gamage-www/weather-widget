@@ -3,6 +3,9 @@ import { HttpClient, HttpParams } from '@angular/common/http'
 import { retry } from 'rxjs/operators'
 import { from } from 'rxjs'
 
+/*
+A mock service for testing based on AccuWeather API
+*/
 @Injectable()
 export class MockWeatherService {
 
@@ -12,103 +15,103 @@ export class MockWeatherService {
   getCurrentCondition(location: any) {
     return from([[
       {
-        "LocalObservationDateTime": "2022-09-11T13:27:00+05:30",
-        "EpochTime": 1662883020,
-        "WeatherText": "Cloudy",
-        "WeatherIcon": 7,
-        "HasPrecipitation": false,
-        "PrecipitationType": null,
-        "IsDayTime": true,
-        "Temperature": {
-          "Metric": {
-            "Value": 29.8,
-            "Unit": "C",
-            "UnitType": 17
+        LocalObservationDateTime: '2022-09-11T13:27:00+05:30',
+        EpochTime: 1662883020,
+        WeatherText: 'Cloudy',
+        WeatherIcon: 7,
+        HasPrecipitation: false,
+        PrecipitationType: null,
+        IsDayTime: true,
+        Temperature: {
+          Metric: {
+            Value: 29.8,
+            Unit: 'C',
+            UnitType: 17
           },
-          "Imperial": {
-            "Value": 86,
-            "Unit": "F",
-            "UnitType": 18
+          Imperial: {
+            Value: 86,
+            Unit: 'F',
+            UnitType: 18
           }
         },
-        "RealFeelTemperature": {
-          "Metric": {
-            "Value": 34.7,
-            "Unit": "C",
-            "UnitType": 17,
-            "Phrase": "Hot"
+        RealFeelTemperature: {
+          Metric: {
+            Value: 34.7,
+            Unit: 'C',
+            UnitType: 17,
+            Phrase: 'Hot'
           },
-          "Imperial": {
-            "Value": 95,
-            "Unit": "F",
-            "UnitType": 18,
-            "Phrase": "Hot"
+          Imperial: {
+            Value: 95,
+            Unit: 'F',
+            UnitType: 18,
+            Phrase: 'Hot'
           }
         },
-        "RealFeelTemperatureShade": {
-          "Metric": {
-            "Value": 32.7,
-            "Unit": "C",
-            "UnitType": 17,
-            "Phrase": "Hot"
+        RealFeelTemperatureShade: {
+          Metric: {
+            Value: 32.7,
+            Unit: 'C',
+            UnitType: 17,
+            Phrase: 'Hot'
           },
-          "Imperial": {
-            "Value": 91,
-            "Unit": "F",
-            "UnitType": 18,
-            "Phrase": "Hot"
+          Imperial: {
+            Value: 91,
+            Unit: 'F',
+            UnitType: 18,
+            Phrase: 'Hot'
           }
         },
-        "RelativeHumidity": 71,
-        "IndoorRelativeHumidity": 71,
-        "DewPoint": {
-          "Metric": {
-            "Value": 24.1,
-            "Unit": "C",
-            "UnitType": 17
+        RelativeHumidity: 71,
+        IndoorRelativeHumidity: 71,
+        DewPoint: {
+          Metric: {
+            Value: 24.1,
+            Unit: 'C',
+            UnitType: 17
           },
-          "Imperial": {
-            "Value": 75,
-            "Unit": "F",
-            "UnitType": 18
+          Imperial: {
+            Value: 75,
+            Unit: 'F',
+            UnitType: 18
           }
         },
-        "Wind": {
-          "Direction": {
-            "Degrees": 248,
-            "Localized": "WSW",
-            "English": "WSW"
+        Wind: {
+          Direction: {
+            Degrees: 248,
+            Localized: 'WSW',
+            English: 'WSW'
           },
-          "Speed": {
-            "Metric": {
-              "Value": 23.7,
-              "Unit": "km/h",
-              "UnitType": 7
+          Speed: {
+            Metric: {
+              Value: 23.7,
+              Unit: 'km/h',
+              UnitType: 7
             },
-            "Imperial": {
-              "Value": 14.7,
-              "Unit": "mi/h",
-              "UnitType": 9
+            Imperial: {
+              Value: 14.7,
+              Unit: 'mi/h',
+              UnitType: 9
             }
           }
         },
-        "WindGust": {
-          "Speed": {
-            "Metric": {
-              "Value": 43.1,
-              "Unit": "km/h",
-              "UnitType": 7
+        WindGust: {
+          Speed: {
+            Metric: {
+              Value: 43.1,
+              Unit: 'km/h',
+              UnitType: 7
             },
-            "Imperial": {
-              "Value": 26.8,
-              "Unit": "mi/h",
-              "UnitType": 9
+            Imperial: {
+              Value: 26.8,
+              Unit: 'mi/h',
+              UnitType: 9
             }
           }
         },
-        "UVIndex": 5,
-        "UVIndexText": "Moderate",
-        "Visibility": {
+        UVIndex: 5,
+        UVIndexText: 'Moderate',
+        Visibility: {
           "Metric": {
             "Value": 11.3,
             "Unit": "km",
@@ -120,8 +123,8 @@ export class MockWeatherService {
             "UnitType": 2
           }
         },
-        "ObstructionsToVisibility": "",
-        "CloudCover": 99,
+        ObstructionsToVisibility: "",
+        CloudCover: 99,
         "Ceiling": {
           "Metric": {
             "Value": 9144,
@@ -361,40 +364,40 @@ export class MockWeatherService {
               }
             }
           },
-          "Past24HourRange": {
-            "Minimum": {
-              "Metric": {
-                "Value": 24.5,
-                "Unit": "C",
-                "UnitType": 17
+          Past24HourRange: {
+            Minimum: {
+              Metric: {
+                Value: 24.5,
+                Unit: 'C',
+                UnitType: 17
               },
-              "Imperial": {
-                "Value": 76,
-                "Unit": "F",
-                "UnitType": 18
+              Imperial: {
+                Value: 76,
+                Unit: 'F',
+                UnitType: 18
               }
             },
-            "Maximum": {
-              "Metric": {
-                "Value": 30.4,
-                "Unit": "C",
-                "UnitType": 17
+            Maximum: {
+              Metric: {
+                Value: 30.4,
+                Unit: "C",
+                UnitType: 17
               },
-              "Imperial": {
-                "Value": 87,
-                "Unit": "F",
-                "UnitType": 18
+              Imperial: {
+                Value: 87,
+                Unit: "F",
+                UnitType: 18
               }
             }
           }
         },
-        "MobileLink": "http://www.accuweather.com/en/lk/colombo/311399/current-weather/311399?lang=en-us",
-        "Link": "http://www.accuweather.com/en/lk/colombo/311399/current-weather/311399?lang=en-us"
+        MobileLink: 'http://www.accuweather.com/en/lk/colombo/311399/current-weather/311399?lang=en-us',
+        Link: 'http://www.accuweather.com/en/lk/colombo/311399/current-weather/311399?lang=en-us'
       }
     ]])
   }
 
-  getForecast(location : string) {
+  getForecast(location: string) {
     return from([{
       "Headline": {
         "EffectiveDate": "2022-09-12T01:00:00+05:30",

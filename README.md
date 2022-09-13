@@ -30,7 +30,6 @@ Codebase
 * This application is strongly coupled with the accuweather API, this should ideally be abstracted out with the adapter pattern (combined with adapter or adapter factory to be able to dynamically change the API provider).
 * Error handling capabilities are limited and should be improved.
 * API Key should be removed from the codebase and be obtained dynamically either via a proxy or be configured alongside the CI/CD pipeline.
-* Interfaces to represent the weather data to be defined.
 * All icons to be locally stored as assets.
 * Organize styling rules.
 * Add unit tests.
