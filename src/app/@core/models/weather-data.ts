@@ -1,8 +1,6 @@
-/*
-An interface modelling weather data consumed by the application.
+/* An interface modelling weather data consumed by the application.
 Loosely based on AccuWeather API data
-Naming conventions are also based on the same
-*/
+Naming conventions are also based on the same */
 const weatherStrings = [
     'Cloudy', 'Sunny', 'Mostly Sunny', 'Partly Sunny', 'Intermittent Clouds', 'Hazy Sunshine', 'Mostly Cloudy',
     'Cloudy', 'Dreary (Overcast)', 'Fog', 'Showers', 'Mostly Cloudy w/ Showers', 'Partly Sunny w/ Showers', 'T-Storms',
@@ -15,20 +13,22 @@ const weatherStrings = [
 
 type WeatherCondition = typeof weatherStrings[number]
 
+type MeasuredValue = {
+    Imperial: {
+        Value: number
+        Unit: string
+    }
+    Metric: {
+        Value: number
+        Unit: string
+    }
+}
+
 export interface WeatherData {
     WeatherText: WeatherCondition
     WeatherIcon: number
     IsDayTime: boolean
-    Temperature: {
-        Metric: {
-            Value: number,
-            Unit: 'C', //Can only be C
-        },
-        Imperial: {
-            Value: 86,
-            Unit: 'F', //Can only be F
-        }
-    },
+    Temperature: MeasuredValue,
     RelativeHumidity: number,
     Wind: {
         Direction: {
@@ -36,35 +36,8 @@ export interface WeatherData {
             Localized: string,
             English: string
         },
-        Speed: {
-            Metric: {
-                Value: number,
-                Unit: 'km/h' //Can only be km/h
-            },
-            Imperial: {
-                Value: number,
-                Unit: 'mi/h' //Can only be mi/h
-            }
-        }
+        Speed: MeasuredValue
     },
-    Visibility: {
-        Metric: {
-            Value: number,
-            Unit: 'km' //Can only be km
-        },
-        Imperial: {
-            Value: number,
-            Unit: 'mi' //Can only be mi
-        }
-    },
-    Pressure: {
-        Metric: {
-            Value: number,
-            Unit: 'mb' //Can only be mb
-        },
-        Imperial: {
-            Value: number,
-            Unit: 'inHg' //Can only be inHg
-        }
-    }
+    Visibility: MeasuredValue,
+    Pressure: MeasuredValue
 }

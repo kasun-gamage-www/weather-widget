@@ -1,21 +1,24 @@
 @import '../app/@theme/theme.scss';
 
+@mixin flex-wrap-fix($flex-basis, $max-viewport-width: 1000px) {
+    flex-grow: 1;
+    $multiplier: 1;
+    $current-width: 0px;
+
+    @while $current-width < $max-viewport-width {
+        $current-width: $current-width +$flex-basis;
+        $multiplier: $multiplier +1;
+        $media-q-width : $flex-basis * $multiplier;
+
+        @media(min-width: $media-q-width) {
+            width: calc(percentage(0.25) - (10px / 3));
+        }
+    }
+}
+
 * {
     //Font identified with https://www.fontsquirrel.com/matcherator
     font-family: Raleway, sans-serif;
-}
-
-#primary-view {
-    background-color: $primary-bg-color;
-    height: 100vh;
-}
-
-#secondary-view {
-    padding: 0 5%;
-}
-
-.contrasted-txt {
-    color: #000;
 }
 
 header {
@@ -26,6 +29,34 @@ header {
 header>input,
 header>button {
     margin-top: 5vh;
+}
+
+section {
+    padding: 0;
+}
+
+input {
+    background-color: $secondary-text-color;
+    color: $primary-text-color;
+    border: 0;
+    padding: 10px 20px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+#primary-view {
+    background-color: $primary-bg-color;
+    min-height: 100vh;
+}
+
+#secondary-view {
+    padding: 0 5%;
+}
+
+.contrasted-txt {
+    color: #000;
 }
 
 .unit-button {
@@ -66,31 +97,14 @@ header>button {
 
 div#today-highlights>div.row {
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
+    flex-flow: column wrap;
     gap: 10px;
     margin-bottom: 10px;
-}
-
-section {
-    padding: 0;
 }
 
 #user-location {
     border-radius: 100px;
     float: right;
-}
-
-h3 {
-    font-size: 96px;
-    font-weight: 500;
-}
-
-input {
-    background-color: $secondary-text-color;
-    color: $primary-text-color;
-    border: 0;
-    padding: 10px 20px;
 }
 
 #clouds-background {
@@ -122,20 +136,15 @@ input {
     background-color: $primary-bg-color;
     text-align: center;
     padding: 10px 5px;
-    transition: all .2s ease-in-out; 
-}
-
-.forecast-chip:hover {
-    transform: scale(1.1); 
+    transition: all .2s ease-in-out;
 }
 
 .forecast-chip:last-child {
-    //to be improved for horizontal view and tabs
     max-width: calc(50% - 5px);
 }
 
-ul {
-    list-style-type: none;
+.forecast-chip:hover {
+    transform: scale(1.1);
 }
 
 #wind-direction {
@@ -203,13 +212,35 @@ mat-icon[fontIcon="navigation"] {
     color: $secondary-text-color;
 }
 
-button.location-select{
+button.location-select {
     padding: 10px 6px;
     width: 80%;
     text-align: left;
     margin-bottom: 5px;
     background-color: $secondary-text-color;
     border-radius: 5px;
+}
+
+#search-view {
+    max-height: 80vh;
+    overflow-y: scroll;
+}
+
+#scale-unit {
+    text-align: right;
+    margin-right: 10%;
+}
+
+.main-display {
+    font-size: 96px;
+}
+
+.secondary-display {
+    font-size: 48px;
+}
+
+.minor-display {
+    font-size: 24px;
 }
 
 @media only screen and (min-width: 992px) {

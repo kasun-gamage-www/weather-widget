@@ -7,7 +7,7 @@
           <mat-icon aria-label="get-location" fontIcon="gps_fixed"></mat-icon>
         </button>
       </header>
-      <div *ngIf="searchMode; else mainView">
+      <div id="search-view" *ngIf="searchMode; else mainView">
         <ul>
           <li *ngFor="let location of locationQuery; index as i">
             <button class="location-select" (click)="selectLocation(i)">
@@ -19,24 +19,22 @@
           </li>
         </ul>
         <p id="not-found-msg" *ngIf="0 === locationQuery?.length || null === locationQuery">
-          No locations matching your keyword has been
-          found. Please try a
-          different keyword.</p>
+          No locations matching your keyword have been found. Please try a different keyword.</p>
 
           <p id="not-found-msg" *ngIf="undefined === locationQuery">
-            Press Enter to search</p>
+            Press <strong>Enter</strong> to search</p>
       </div>
       <ng-template #mainView>
         <div style="height: 40vh; text-align: center;">
           <div id="clouds-background"></div>
           <img id="current-condition-icon" [src]="conditionIcon">
         </div>
-        <div style="height: 25vh; text-align: center; vertical-align: middle; line-height: 20vh">
-          <span style="font-size: 96px;">{{ weatherData.Temperature[unitType].Value }}</span>
-          <span style="font-size: 48px;">°{{ weatherData.Temperature[unitType].Unit }}</span>
+        <div style="height: 25vh; text-align: center; line-height: 20vh">
+          <span class="main-display">{{ weatherData.Temperature[unitType].Value }}</span>
+          <span class="secondary-display">°{{ weatherData.Temperature[unitType].Unit }}</span>
         </div>
         <div style="height: 10vh; text-align: center; vertical-align: middle;">
-          <span style="font-size: 24px;">{{ weatherData.WeatherText | titlecase }}</span>
+          <span class="minor-display">{{ weatherData.WeatherText | titlecase }}</span>
         </div>
         <div style="height: 7vh; text-align: center;" class="secondary-text">
           Today&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;{{ selectedDate | date:'EEE, d MMM' }}
@@ -82,8 +80,8 @@
           </div>
           <div class="detail-box">
             <h5>Humidity</h5>
-            <span class="value-disply">{{ weatherData.RelativeHumidity }}</span>
-            <span class="unit-disply">%</span>
+            <span class="value-display">{{ weatherData.RelativeHumidity }}</span>
+            <span class="unit-display">%</span>
             <div id="humidity-scale">
               <div class="scale">
                 <span>0</span>
@@ -94,7 +92,7 @@
                 <div class="full-bar"></div>
                 <div class="value-bar" [ngStyle]="{ 'width.%' : weatherData.RelativeHumidity * 0.8 }"></div>
               </div>
-              <div style="text-align: right; margin-right: 10%;">
+              <div id="scale-unit">
                 <span>%</span>
               </div>
             </div>

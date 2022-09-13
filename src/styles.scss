@@ -8,18 +8,18 @@
     src: url(assets/fonts/Raleway-Regular.ttf) format("opentype");
 }
 
-.material-icons{
+.material-icons {
     font-family: 'Material Icons' !important;
 }
 
-body{
+body {
     padding: 0;
     margin: 0;
-    background-color : #0f0c1c;
-    color : $primary-text-color;
+    background-color: #0f0c1c;
+    color: $primary-text-color;
 }
 
-.container-fluid{
+.container-fluid {
     padding: 0;
 }
 
@@ -27,14 +27,38 @@ body{
     margin: 0;
 }
 
-.secondary-text{
+.secondary-text {
     color: $secondary-text-color;
 }
 
-.inline-icon{
+.inline-icon {
     position: relative;
     top: 0.5rem;
     margin: 0 5px;
 }
 
-$grid-gutter-width: 2rem !default;
+/*Custom scrollbar for webkit browsers*/
+// Search for weather in York to see application
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: $primary-bg-color
+}
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+/*End of custom scrollbar*/
+
+::placeholder {
+    color: $primary-text-color;
+}
+:-ms-input-placeholder {
+    color: $primary-text-color;
+}
+::-ms-input-placeholder {
+    color: $primary-text-color;
+}

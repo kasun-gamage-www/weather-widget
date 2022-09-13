@@ -2,11 +2,11 @@
 <img [src]="conditionIcon">
 
 <div style="display: flex;">
-    <p style="flex : 1">{{ getTemperatureVal(forecastSummary.Temperature.Minimum.Value) |
+    <p>{{ getTemperatureVal(forecastSummary.Temperature.Minimum.Value) |
         number:'1.0-0' }}
         °{{ 'Metric' === measurementSystem ? 'C' : 'F' }}</p>
 
-    <p style="flex : 1" class="secondary-text">
+    <p class="secondary-text">
         {{ getTemperatureVal(forecastSummary.Temperature.Maximum.Value) | number:'1.0-0' }}
         °{{ 'Metric' === measurementSystem ? 'C' : 'F' }}</p>
 </div>

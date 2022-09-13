@@ -31,7 +31,6 @@ Codebase
 * Error handling capabilities are limited and should be improved.
 * API Key should be removed from the codebase and be obtained dynamically either via a proxy or be configured alongside the CI/CD pipeline.
 * All icons to be locally stored as assets.
-* Organize styling rules.
 * Add unit tests.
 
 Features

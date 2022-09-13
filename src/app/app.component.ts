@@ -16,14 +16,13 @@ export class AppComponent {
   title = 'weather widget'
   unitType: 'Imperial' | 'Metric' = 'Metric'
   searchMode: boolean = false
-  //---
+  //======
   selectedDate: Date = new Date()
   selectedLocation: object | any = {
     Key: '347625',
     EnglishName: 'Los Angeles',
     Country: { EnglishName: 'United States' }
   }
-
   /*Data - static*/
   weatherData: any | null = null
   forecast: Array<object | any> | any = []
@@ -49,8 +48,6 @@ export class AppComponent {
       this.forecast = forecast.DailyForecasts
     })
 
-    //this.weatherM.getForecast(this.selectedLocation.Key).subscribe(forecast => { this.forecast = forecast.DailyForecasts; console.log(forecast) })
-
   }
 
   getCurrentLocationWeather() {
@@ -69,14 +66,14 @@ export class AppComponent {
     } else {
       //if the searchbox is cleared
       this.searchMode = false
-      this.locationQuery = []
+      this.locationQuery = undefined
     }
   }
 
   selectLocation(queryIndex: number) {
     this.selectedLocation = this.locationQuery[queryIndex]
     this.refreshAll()
-    this.locationQuery = []
+    this.locationQuery = undefined
     this.searchMode = false
   }
 
@@ -85,11 +82,10 @@ export class AppComponent {
   }
 
   switchMode(input: any) {
-    console.log(input.value)
     if (input?.value) this.searchMode = true
     else {
       this.searchMode = false
-      this.locationQuery = []
+      this.locationQuery = undefined
     }
   }
 
