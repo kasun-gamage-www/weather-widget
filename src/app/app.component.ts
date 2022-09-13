@@ -29,6 +29,10 @@ export class AppComponent {
   forecast: Array<object | any> | any = []
   conditionIcon: string | undefined
 
+  /*
+  truthy : location list from API
+  undefined : currently nothing to search
+  null | empty array : queried but no results*/
   locationQuery: any
 
   constructor(private weather: WeatherService, private weatherM: MockWeatherService, private geo: GeoLocationService) {
@@ -54,6 +58,7 @@ export class AppComponent {
     Geo.fetchUserLocation(position => {
       this.geo.getLocationByCoordinates(position['lat'], position['lng']).subscribe(locationDetails => {
         this.selectedLocation = locationDetails
+        this.refreshAll()
       })
     })
   }
@@ -61,12 +66,7 @@ export class AppComponent {
   searchLocation(target: any) {
     if (target.value) {
       this.searchMode = true
-      this.geo.getLocationsByFullName(target.value).subscribe((locationDetails: any) => {
-
-        this.selectedLocation = locationDetails[0]
-        this.locationQuery = locationDetails
-      }, error => {
-      })
+      this.geo.getLocationsByFullName(target.value).subscribe((locationDetails: any) => this.locationQuery = locationDetails)
     } else {
       //if the searchbox is cleared
       this.searchMode = false
@@ -83,6 +83,12 @@ export class AppComponent {
 
   setMeasurementSys(selectedSys: 'Imperial' | 'Metric') {
     this.unitType = selectedSys
+  }
+
+  switchMode(input: any) {
+    console.log(input.value)
+    if (input?.value) this.searchMode = true
+    else this.searchMode = false
   }
 
 }

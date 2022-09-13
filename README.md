@@ -41,3 +41,6 @@ Features
 * Users could be given the ability to pick the preffered unit system and the precision for each indicator separately.
 * Only the day time forecasts are shown. This can be alternated with a timer(switch every 10,000ms or so) or by a button to switch between day and night forecasts.
 * Loading screen to be added.
+
+Mobile Support
+* The UI of the application is responsive and is compatible with most device screens. This could be upgraded to a PWA in future.

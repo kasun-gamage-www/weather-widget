@@ -42,6 +42,11 @@ header>button {
     background-color: aliceblue;
     font-weight: bold;
     opacity: 1;
+    width: 35px;
+    height: 35px;
+    top: -2px;
+    right: -2px;
+    position: relative;
 }
 
 .detail-box {
@@ -117,6 +122,11 @@ input {
     background-color: $primary-bg-color;
     text-align: center;
     padding: 10px 5px;
+    transition: all .2s ease-in-out; 
+}
+
+.forecast-chip:hover {
+    transform: scale(1.1); 
 }
 
 .forecast-chip:last-child {
@@ -191,6 +201,15 @@ mat-icon[fontIcon="navigation"] {
 
 .secondary-text {
     color: $secondary-text-color;
+}
+
+button.location-select{
+    padding: 10px 6px;
+    width: 80%;
+    text-align: left;
+    margin-bottom: 5px;
+    background-color: $secondary-text-color;
+    border-radius: 5px;
 }
 
 @media only screen and (min-width: 992px) {
