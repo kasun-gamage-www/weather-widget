@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core'
-import { HttpClient, HttpParams } from '@angular/common/http'
-import { retry } from 'rxjs/operators'
-import { from } from 'rxjs'
+import { HttpClient } from '@angular/common/http'
+import { from, Observable } from 'rxjs'
+import { WeatherData } from '../../models/weather-data'
+import { ForecastData } from '../../models/forecast-data'
 
 /*
 A mock service for testing based on AccuWeather API
@@ -11,8 +12,7 @@ export class MockWeatherService {
 
   constructor(private http: HttpClient) { }
 
-  //concrete implementation with AccuWeather. To be abstracted later
-  getCurrentCondition(location: any) {
+  getCurrentCondition(location: number): Observable<WeatherData | any> {
     return from([[
       {
         LocalObservationDateTime: '2022-09-11T13:27:00+05:30',
@@ -397,7 +397,7 @@ export class MockWeatherService {
     ]])
   }
 
-  getForecast(location: string) {
+  getForecast(location: number): Observable<Array<ForecastData> | any> {
     return from([{
       "Headline": {
         "EffectiveDate": "2022-09-12T01:00:00+05:30",
@@ -1695,14 +1695,14 @@ export class MockWeatherService {
               "UnitType": 1
             },
             "HoursOfPrecipitation": 1,
-            "HoursOfRain": 1,
-            "HoursOfSnow": 0,
-            "HoursOfIce": 0,
-            "CloudCover": 81,
-            "Evapotranspiration": {
-              "Value": 0.01,
-              "Unit": "in",
-              "UnitType": 1
+            HoursOfRain: 1,
+            HoursOfSnow: 0,
+            HoursOfIce: 0,
+            CloudCover: 81,
+            Evapotranspiration: {
+              Value: 0.01,
+              Unit: "in",
+              UnitType: 1
             },
             "SolarIrradiance": {
               "Value": 32.3,

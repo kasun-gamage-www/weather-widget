@@ -1,9 +1,12 @@
 import { Component } from '@angular/core'
+import { ForecastData } from './@core/models/forecast-data'
 import { WeatherData } from './@core/models/weather-data'
 import { GeoLocationService } from './@core/services/geo-location.service'
 import WeatherService from './@core/services/weather.service'
 import Geo from './@core/util/geo'
 import IconMapping from './@core/util/icon-mapping'
+import { MeasurementSystem } from './@types/measurement-type'
+import { WGeoLocation } from './@types/w-geo-location'
 
 @Component({
   selector: 'app-root',
@@ -13,19 +16,18 @@ import IconMapping from './@core/util/icon-mapping'
 })
 export class AppComponent {
   /*UI State*/
-  title = 'weather widget'
-  unitType: 'Imperial' | 'Metric' = 'Metric'
+  unitType: MeasurementSystem = 'Metric'
   searchMode: boolean = false
   //======
   selectedDate: Date = new Date()
-  selectedLocation: object | any = {
-    Key: '347625',
+  selectedLocation: WGeoLocation = {
+    Key: 347625,
     EnglishName: 'Los Angeles',
     Country: { EnglishName: 'United States' }
   }
   /*Data - static*/
-  weatherData: any | null = null
-  forecast: Array<object | any> | any = []
+  weatherData: WeatherData | undefined
+  forecast: Array<ForecastData> | undefined = []
   conditionIcon: string | undefined
 
   /*
@@ -44,15 +46,15 @@ export class AppComponent {
       this.conditionIcon = IconMapping.getIconURIByCode(weatherData.WeatherIcon)
     })
 
-    this.weather.getForecast(this.selectedLocation?.Key || '347625').subscribe(forecast => {
-      this.forecast = forecast.DailyForecasts
+    this.weather.getForecast(this.selectedLocation?.Key || 347625).subscribe((forecast: Array<ForecastData>) => {
+      this.forecast = forecast
     })
 
   }
 
   getCurrentLocationWeather() {
     Geo.fetchUserLocation(position => {
-      this.geo.getLocationByCoordinates(position['lat'], position['lng']).subscribe(locationDetails => {
+      this.geo.getLocationByCoordinates(position['lat'], position['lng']).subscribe((locationDetails: WGeoLocation) => {
         this.selectedLocation = locationDetails
         this.refreshAll()
       })
