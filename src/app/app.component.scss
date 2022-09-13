@@ -1,21 +1,5 @@
 @import '../app/@theme/theme.scss';
 
-@mixin flex-wrap-fix($flex-basis, $max-viewport-width: 1000px) {
-    flex-grow: 1;
-    $multiplier: 1;
-    $current-width: 0px;
-
-    @while $current-width < $max-viewport-width {
-        $current-width: $current-width +$flex-basis;
-        $multiplier: $multiplier +1;
-        $media-q-width : $flex-basis * $multiplier;
-
-        @media(min-width: $media-q-width) {
-            width: calc(percentage(0.25) - (10px / 3));
-        }
-    }
-}
-
 * {
     //Font identified with https://www.fontsquirrel.com/matcherator
     font-family: Raleway, sans-serif;
