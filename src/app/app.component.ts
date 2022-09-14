@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, ElementRef, Input, Renderer2, ViewChild } from '@angular/core'
 import { ForecastData } from './@core/models/forecast-data'
 import { WeatherData } from './@core/models/weather-data'
 import { GeoLocationService } from './@core/services/geo-location.service'
@@ -15,6 +15,7 @@ import { WGeoLocation } from './@types/w-geo-location'
   providers: [WeatherService, GeoLocationService]
 })
 export class AppComponent {
+  @ViewChild('searchBox') searchBox!: ElementRef<HTMLInputElement>
   /*UI State*/
   unitType: MeasurementSystem = 'Metric'
   searchMode: boolean = false
@@ -36,7 +37,7 @@ export class AppComponent {
   null | empty array : queried but no results*/
   locationQuery: any
 
-  constructor(private weather: WeatherService, private geo: GeoLocationService) {
+  constructor(private weather: WeatherService, private geo: GeoLocationService, private renderer : Renderer2) {
     this.refreshAll()
   }
 
@@ -77,6 +78,7 @@ export class AppComponent {
     this.refreshAll()
     this.locationQuery = undefined
     this.searchMode = false
+    this.renderer.setProperty(this.searchBox.nativeElement, 'value', '')
   }
 
   setMeasurementSys(selectedSys: 'Imperial' | 'Metric') {

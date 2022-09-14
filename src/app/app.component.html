@@ -2,7 +2,7 @@
   <div class="row">
     <section id="primary-view">
       <header>
-        <input type="text" placeholder="Search for Places" (change)="searchLocation($event.target)" (keyup)="switchMode($event.target)"/>
+        <input #searchBox placeholder="Search for Places" (change)="searchLocation($event.target)" (keyup)="switchMode($event.target)"/>
         <button id="user-location" class="btn-circle" (click)="getCurrentLocationWeather()">
           <mat-icon aria-label="get-location" fontIcon="gps_fixed"></mat-icon>
         </button>

@@ -1,5 +1,5 @@
 export default class UnitHelper {
-    static fahrenheitToCelsius(fValue: number) {
+    static fahrenheitToCelsius(fValue: number) : number {
         return (fValue - 32) * 5 / 9
     }
 }

@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core'
+import { ForecastData } from 'src/app/@core/models/forecast-data'
 import IconMapping from 'src/app/@core/util/icon-mapping'
 import UnitHelper from 'src/app/@core/util/units-helper'
+import { MeasurementSystem } from 'src/app/@types/measurement-type'
 
 @Component({
   selector: 'app-forecast-chip',
@@ -8,8 +10,8 @@ import UnitHelper from 'src/app/@core/util/units-helper'
   styleUrls: ['./forecast-chip.component.scss']
 })
 export class ForecastChipComponent implements OnInit {
-  @Input() forecastSummary: any = {}
-  @Input() measurementSystem: 'Imperial' | 'Metric' = 'Metric'
+  @Input() forecastSummary!: ForecastData
+  @Input() measurementSystem: MeasurementSystem = 'Metric'
   @Input() isTomorrow: boolean = false
 
   conditionIcon: string = ''
