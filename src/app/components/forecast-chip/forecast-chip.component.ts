@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Attribute, Component, Input, OnInit } from '@angular/core'
 import { ForecastData } from 'src/app/@core/models/forecast-data'
 import IconMapping from 'src/app/@core/util/icon-mapping'
 import UnitHelper from 'src/app/@core/util/units-helper'
@@ -12,11 +12,11 @@ import { MeasurementSystem } from 'src/app/@types/measurement-type'
 export class ForecastChipComponent implements OnInit {
   @Input() forecastSummary!: ForecastData
   @Input() measurementSystem: MeasurementSystem = 'Metric'
-  @Input() isTomorrow: boolean = false
 
   conditionIcon: string = ''
 
-  constructor() {}
+  /* isTomorrow doesn't need to be checked for each change detection cycle*/
+  constructor(@Attribute('isTomorrow') public isTomorrow: boolean = false) { }
 
   ngOnInit(): void {
     this.conditionIcon = IconMapping.getIconURIByCode(this.forecastSummary.Day.Icon)

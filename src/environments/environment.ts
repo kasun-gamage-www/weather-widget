@@ -7,7 +7,7 @@ export const environment = {
 
   API_BASE_URI: 'http://dataservice.accuweather.com/',
   //temporarily hardcoded. This should go into config file or be obtained through a proxy
-  API_KEY: 'vIyrqZAIe53LMwOGGEGA8D6abXm54J69'
+  API_KEY: 'ceNkuUNL59sHzlvTASwnXRbNEhAWHk7L'
 }
 
 /*

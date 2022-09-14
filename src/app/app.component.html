@@ -57,7 +57,7 @@
       </div>
       <div id="forecast" class="row">
         <div *ngFor="let dayF of forecast; first as isTomo" class="forecast-chip">
-          <app-forecast-chip [forecastSummary]="dayF" [measurementSystem]="unitType" [isTomorrow]="isTomo">
+          <app-forecast-chip [forecastSummary]="dayF" [measurementSystem]="unitType" [attr.isTomorrow]="isTomo">
           </app-forecast-chip>
         </div>
       </div>
