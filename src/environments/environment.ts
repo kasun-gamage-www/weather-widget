@@ -5,8 +5,9 @@
 export const environment = {
   production: false,
 
-   //temporarily hardcoded. This should go into config file or be obtained through a proxy
-   API_KEY : '8MvCxNVuobvlNS34jx6IIWBeOiaxSt4M'
+  API_BASE_URI: 'http://dataservice.accuweather.com/',
+  //temporarily hardcoded. This should go into config file or be obtained through a proxy
+  API_KEY: 'vIyrqZAIe53LMwOGGEGA8D6abXm54J69'
 }
 
 /*

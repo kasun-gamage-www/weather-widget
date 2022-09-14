@@ -1,12 +1,15 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http'
-import { NgModule } from '@angular/core'
+import { ErrorHandler, NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MatIconModule } from '@angular/material/icon'
 
 import { AppComponent } from './app.component'
-import { ForecastChipComponent } from './components/forecast-chip/forecast-chip.component';
-import { SpeedUnitPipe } from './@theme/pipes/speed-unit.pipe';
+import { ForecastChipComponent } from './components/forecast-chip/forecast-chip.component'
+import { SpeedUnitPipe } from './@theme/pipes/speed-unit.pipe'
 import { DistanceUnitPipe } from './@theme/pipes/distance-unit.pipe'
+import { GlobalErrorHandler } from './@core/errors/global-error-handler'
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 @NgModule({
   declarations: [
@@ -17,10 +20,16 @@ import { DistanceUnitPipe } from './@theme/pipes/distance-unit.pipe'
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule
   ],
-  providers: [HttpClient],
+  providers: [HttpClient,
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
