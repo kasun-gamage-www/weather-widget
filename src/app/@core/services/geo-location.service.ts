@@ -10,15 +10,15 @@ export class GeoLocationService {
   constructor(private http: HttpClient) { }
 
   /*API URI should ideally be obtained through provider object*/
-  getLocationByCoordinates(lat: number = 0, lng: number = 0) : Observable<WGeoLocation> {
-    return this.http.get<WGeoLocation>(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${environment.API_KEY}&q=${lat},${lng}`, {
-      //   params: new HttpParams().appendAll({q: `${lat},${lng}`})
+  getLocationByCoordinates({ lat, lng }: { lat: number; lng: number }): Observable<WGeoLocation> {
+    return this.http.get<WGeoLocation>(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search`, {
+      params: new HttpParams().appendAll({ apikey: environment.API_KEY, q: `${lat},${lng}` })
     }).pipe(retry(3))
   }
 
-  getLocationsByFullName(locationName: string) : Observable<Array<WGeoLocation>> {
-    return this.http.get<Array<WGeoLocation>>(`http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${environment.API_KEY}&q=${locationName}`, {
-      //   params: new HttpParams().appendAll({q: `${lat},${lng}`})
+  getLocationsByFullName(locationName: string): Observable<Array<WGeoLocation>> {
+    return this.http.get<Array<WGeoLocation>>(`http://dataservice.accuweather.com/locations/v1/cities/search`, {
+      params: new HttpParams().appendAll({ apikey: `${environment.API_KEY}`, q: locationName })
     }).pipe(retry(3))
   }
 }

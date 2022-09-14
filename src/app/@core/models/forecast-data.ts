@@ -14,6 +14,6 @@ export interface ForecastData {
     },
     Day: {
         Icon: number,
-        IconPhrase: WeatherCondition,
+        IconPhrase: WeatherCondition
     }
 }

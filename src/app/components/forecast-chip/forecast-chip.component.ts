@@ -16,15 +16,14 @@ export class ForecastChipComponent implements OnInit {
 
   conditionIcon: string = ''
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit(): void {
     this.conditionIcon = IconMapping.getIconURIByCode(this.forecastSummary.Day.Icon)
   }
 
   //Can be abstracted as a custom pipe as well. Would be more efficient in terms of performance
-  getTemperatureVal(fValue: number) {
+  getTemperatureVal(fValue: number): number {
     return 'Metric' === this.measurementSystem ? UnitHelper.fahrenheitToCelsius(fValue) : fValue
   }
 
