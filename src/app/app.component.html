@@ -2,7 +2,8 @@
   <div class="row">
     <section id="primary-view">
       <header>
-        <input #searchBox placeholder="Search for Places" (change)="searchLocation($event.target)" (keyup)="switchMode($event.target)"/>
+        <input #searchBox placeholder="Search for Places" (change)="searchLocation($event.target)"
+          (keyup)="switchMode($event.target)" />
         <button id="user-location" class="btn-circle" (click)="getCurrentLocationWeather()">
           <mat-icon aria-label="get-location" fontIcon="gps_fixed"></mat-icon>
         </button>
@@ -21,8 +22,8 @@
         <p id="not-found-msg" *ngIf="0 === locationQuery?.length || null === locationQuery">
           No locations matching your keyword have been found. Please try a different keyword.</p>
 
-          <p id="not-found-msg" *ngIf="undefined === locationQuery">
-            Press <strong>Enter</strong> to search</p>
+        <p id="not-found-msg" *ngIf="undefined === locationQuery">
+          Press <strong>Enter</strong> to search</p>
       </div>
       <ng-template #mainView>
         <div style="height: 40vh; text-align: center;">
@@ -69,7 +70,7 @@
               {{ weatherData.Wind.Speed[unitType].Value }}
             </span>
             <span class="unit-display">
-              {{ weatherData.Wind.Speed[unitType].Unit }}
+              {{ weatherData.Wind.Speed[unitType].Unit | speedUnit:'p' }}
             </span>
             <div id="wind-direction">
               <mat-icon aria-label="wind-direction" fontIcon="navigation" class="inline-icon"
@@ -103,7 +104,7 @@
             <h5>Visibility</h5>
             <span class="value-display">
               {{ weatherData.Visibility[unitType].Value }}</span>
-            <span class="unit-display">&nbsp;{{ weatherData.Visibility[unitType].Unit }}</span>
+            <span class="unit-display">&nbsp;{{ weatherData.Visibility[unitType].Unit | distanceUnit }}</span>
           </div>
           <div class="detail-box">
             <h5>Air Pressure</h5>
