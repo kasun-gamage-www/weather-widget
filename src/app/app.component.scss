@@ -39,8 +39,41 @@ ul {
     padding: 0 5%;
 }
 
-.contrasted-txt {
-    color: #000;
+div#today-highlights>div.row {
+    display: flex;
+    flex-flow: column wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+#user-location {
+    border-radius: 100px;
+    float: right;
+}
+
+#clouds-background {
+    position: relative;
+    opacity: 0.1;
+    background-image: url('../assets/img/Clouds.png');
+    background-size: auto 100%;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+}
+
+#current-condition-icon {
+    height: 20vh;
+    position: relative;
+    top: -30vh;
+}
+
+#forecast {
+    width: 100%;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 10vh;
 }
 
 .unit-button {
@@ -79,52 +112,12 @@ ul {
     font-size: 32px;
 }
 
-div#today-highlights>div.row {
-    display: flex;
-    flex-flow: column wrap;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-#user-location {
-    border-radius: 100px;
-    float: right;
-}
-
-#clouds-background {
-    position: relative;
-    opacity: 0.1;
-    background-image: url('../assets/img/Clouds.png');
-    background-size: auto 100%;
-    background-position: center;
-    height: 100%;
-    width: 100%;
-}
-
-#current-condition-icon {
-    height: 20vh;
-    position: relative;
-    top: -30vh;
-}
-
-#forecast {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 10vh;
-}
-
 .forecast-chip {
-    flex: 1;
-    min-width: 150px;
+    min-width: 120px;
     background-color: $primary-bg-color;
     text-align: center;
     padding: 10px 5px;
     transition: all .2s ease-in-out;
-}
-
-.forecast-chip:last-child {
-    max-width: calc(50% - 5px);
 }
 
 .forecast-chip:hover {
@@ -227,11 +220,6 @@ button.location-select {
     font-size: 24px;
 }
 
-/*
-#forecast[min-width~="400px"] .forecast-chip{
-    max-width: 30%;
-}*/
-
 @media only screen and (min-width: 992px) {
     #primary-view {
         width: 30%;
@@ -249,5 +237,17 @@ button.location-select {
 
     div#today-highlights div.row {
         flex-direction: row;
+    }
+
+    #forecast {
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    #forecast {
+        grid-template-rows: repeat(1, 1fr);
+        grid-template-columns: repeat(5, 1fr);
     }
 }

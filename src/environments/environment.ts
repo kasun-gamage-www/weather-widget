@@ -6,7 +6,7 @@ export const environment = {
   production: false,
 
    //temporarily hardcoded. This should go into config file or be obtained through a proxy
-   API_KEY : 'egBV6neiBak2z8xosyPNZRg4Sit9fAUW'
+   API_KEY : '8MvCxNVuobvlNS34jx6IIWBeOiaxSt4M'
 }
 
 /*
