@@ -1,4 +1,4 @@
-@import '../app/@theme/theme.scss';
+@import '../app/@theme/_theme.scss';
 
 * {
     //Font identified with https://www.fontsquirrel.com/matcherator
@@ -76,6 +76,10 @@ div#today-highlights>div.row {
     margin-bottom: 10vh;
 }
 
+#search-box {
+    width: 66%;
+}
+
 .unit-button {
     width: 32px;
     height: 32px;
@@ -118,10 +122,10 @@ div#today-highlights>div.row {
     text-align: center;
     padding: 10px 5px;
     transition: all .2s ease-in-out;
-}
 
-.forecast-chip:hover {
-    transform: scale(1.08);
+    &:hover {
+        transform: scale(1.08);
+    }
 }
 
 #wind-direction {
@@ -150,22 +154,25 @@ mat-icon[fontIcon="navigation"] {
 
 }
 
-#humidity-scale>.bar>.full-bar {
-    width: 80%;
-    height: 5px;
-    background-color: $secondary-text-color;
-    margin: 3px auto;
-    border-radius: 50px;
+#humidity-scale>.bar {
+    .value-bar {
+        height: 5px;
+        background-color: #ffed64;
+        margin: 3px 0 3px 10%;
+        margin-top: -8px;
+        position: relative;
+        border-radius: 50px;
+    }
+
+    .full-bar {
+        width: 80%;
+        height: 5px;
+        background-color: $secondary-text-color;
+        margin: 3px auto;
+        border-radius: 50px;
+    }
 }
 
-#humidity-scale>.bar>.value-bar {
-    height: 5px;
-    background-color: #ffed64;
-    margin: 3px 0 3px 10%;
-    margin-top: -8px;
-    position: relative;
-    border-radius: 50px;
-}
 
 .btn-circle {
     width: 40px;

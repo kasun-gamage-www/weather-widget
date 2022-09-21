@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core'
 
 @Pipe({
-  name: 'speedUnit'
+  name: 'speedUnit',
+  pure: true
 })
 export class SpeedUnitPipe implements PipeTransform {
 

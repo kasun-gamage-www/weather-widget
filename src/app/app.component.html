@@ -2,7 +2,7 @@
   <div class="row">
     <section id="primary-view">
       <header>
-        <input #searchBox placeholder="Search for Places" (change)="searchLocation()"
+        <input #searchBox id="search-box" placeholder="Search for Places" (change)="searchLocation()"
           (keyup)="switchMode()" />
         <button id="user-location" class="btn-circle" (click)="getCurrentLocationWeather()">
           <mat-icon aria-label="get-location" fontIcon="gps_fixed"></mat-icon>
@@ -30,17 +30,17 @@
           <div id="clouds-background"></div>
           <img id="current-condition-icon" [src]="conditionIcon">
         </div>
-        <div style="height: 25vh; text-align: center; line-height: 20vh">
+        <div style="height: 25%; text-align: center; line-height: 20vh">
           <span class="main-display">{{ weatherData.Temperature[unitType].Value }}</span>
           <span class="secondary-display">°{{ weatherData.Temperature[unitType].Unit }}</span>
         </div>
-        <div style="height: 10vh; text-align: center; vertical-align: middle;">
+        <div style="height: 10%; text-align: center; vertical-align: middle;">
           <span class="minor-display">{{ weatherData.WeatherText | titlecase }}</span>
         </div>
-        <div style="height: 7vh; text-align: center;" class="secondary-text">
+        <div style="height: 7%; text-align: center;" class="secondary-text">
           Today&nbsp;&nbsp;&nbsp;.&nbsp;&nbsp;&nbsp;{{ selectedDate | date:'EEE, d MMM' }}
         </div>
-        <footer style="height: 7vh; text-align: center;" class="secondary-text">
+        <footer style="height: 7%; text-align: center;" class="secondary-text">
           <mat-icon fontIcon="place" aria-hidden="true" class="inline-icon"></mat-icon>{{ selectedLocation.EnglishName
           }}, {{
           selectedLocation.Country.EnglishName }}
