@@ -1,12 +1,12 @@
 import { Component, ElementRef, Input, Renderer2, ViewChild } from '@angular/core'
 import { ForecastData } from './@core/models/forecast-data'
+import { WGeoLocation } from './@core/models/w-geo-location'
 import { WeatherData } from './@core/models/weather-data'
 import { GeoLocationService } from './@core/services/geo-location.service'
 import WeatherService from './@core/services/weather.service'
 import Geo from './@core/util/geo'
 import IconMapping from './@core/util/icon-mapping'
-import { MeasurementSystem } from './@types/measurement-type'
-import { WGeoLocation } from './@types/w-geo-location'
+import { MeasurementSystem } from './@types/measurement-sys'
 
 @Component({
   selector: 'app-root',

@@ -1,8 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable, retry } from 'rxjs'
-import { WGeoLocation } from 'src/app/@types/w-geo-location'
 import { environment } from 'src/environments/environment'
+import { WGeoLocation } from '../models/w-geo-location'
 
 @Injectable()
 export class GeoLocationService {
@@ -18,7 +18,7 @@ export class GeoLocationService {
 
   getLocationsByFullName(locationName: string): Observable<Array<WGeoLocation>> {
     return this.http.get<Array<WGeoLocation>>(`${environment.API_BASE_URI}locations/v1/cities/search`, {
-      params: new HttpParams().appendAll({ apikey: `${environment.API_KEY}`, q: locationName })
+      params: new HttpParams().appendAll({ apikey: environment.API_KEY, q: locationName })
     }).pipe(retry({ count: 3, delay: 1000 }))
   }
 }
